@@ -7,9 +7,9 @@ import ChartGrabber from "@/components/@global/features/ChartGrabber";
 import { ShowPercentages } from "@/components/@global/features/ShowPercentages";
 import { getObjToArr } from "@/utils/formatters/getObjToArr";
 
-const DesligamentosGenero = ({
+const DiversidadeGenero = ({
   data,
-  title = "Distribuição formal de desligamentos por Gênero",
+  title = "Distribuição formal de desligamentos por Gênero (necessidades especiais)",
   year,
 }: any) => {
   const [showPercentage, setShowPercentage] = useState(true);
@@ -38,4 +38,4 @@ const DesligamentosGenero = ({
   );
 };
 
-export default DesligamentosGenero;
+export default DiversidadeGenero;

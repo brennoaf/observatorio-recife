@@ -5,14 +5,15 @@ import ScrollableBarChart from "@/components/@global/charts/VerticalScrollableBa
 import ColorPalette from "@/utils/palettes/charts/ColorPalette";
 import ChartGrabber from "@/components/@global/features/ChartGrabber";
 import { getObjToArr } from "@/utils/formatters/getObjToArr";
+import { raisGrupoDicts } from "@/utils/dicts/rais/raisGrupoDicts";
 
-const EmpregosFaixaEtaria = ({
+const DiversidadeDistribuicao = ({
   data,
-  title = "Distribuição formal de empregos por faixa etária",
+  title = "Distribuição formal de empregos por grupo de empresas (necessidades especiais)",
   year,
 }: any) => {
   
-  const chartData = getObjToArr<number>(data['Faixa Etária'] || {}).sort((a, b) => b.value - a.value)
+  const chartData = getObjToArr<number>(data['grupo'] || {}).sort((a, b) => b.value - a.value).map((item) => ({...item, label: raisGrupoDicts[item.label] }))
 
   return (
     <div className="chart-wrapper">
@@ -25,11 +26,11 @@ const EmpregosFaixaEtaria = ({
           colors={ColorPalette.default}
           heightPerCategory={50}
           widthY={130}
-          left={-15}
+          left={20}
         />
       </ChartGrabber>
     </div>
   );
 };
 
-export default EmpregosFaixaEtaria;
+export default DiversidadeDistribuicao;

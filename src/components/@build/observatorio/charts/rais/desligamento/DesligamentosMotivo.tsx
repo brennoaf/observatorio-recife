@@ -8,11 +8,13 @@ import { getObjToArr } from "@/utils/formatters/getObjToArr";
 
 const DesligamentosFaixaEtaria = ({
   data,
-  title = "Distribuição formal de empregos por faixa etária",
+  title = "Distribuição desligamentos de empregos por motivo da recisão",
   year,
 }: any) => {
   
-  const chartData = getObjToArr<number>(data['Motivo Desligamento'] || {}).sort((a, b) => b.value - a.value)
+  const { "89": _, ...defics } = data['Motivo Desligamento'] || {}
+
+  const chartData = getObjToArr<number>(defics || {}).sort((a, b) => b.value - a.value).map((item) => ({ ...item, label: item.label.split(' - ')[1] }))
 
   return (
     <div className="chart-wrapper">
@@ -21,11 +23,11 @@ const DesligamentosFaixaEtaria = ({
           data={chartData}
           title={title}
           xKey="label"
-          bars={[{ dataKey: "value", name: "Motivo" }]}
+          bars={[{ dataKey: "value", name: "Quantidade" }]}
           colors={ColorPalette.default}
           heightPerCategory={50}
-          widthY={130}
-          left={-15}
+          widthY={200}
+          left={0}
         />
       </ChartGrabber>
     </div>

@@ -6,13 +6,13 @@ import ColorPalette from "@/utils/palettes/charts/ColorPalette";
 import ChartGrabber from "@/components/@global/features/ChartGrabber";
 import { getObjToArr } from "@/utils/formatters/getObjToArr";
 
-const EmpregosFaixaEtaria = ({
+const DiversidadeGrauInstrucao = ({
   data,
-  title = "Distribuição formal de empregos por faixa etária",
+  title = "Distribuição formal de empregos por grau de instrução (necessidades especiais)",
   year,
 }: any) => {
   
-  const chartData = getObjToArr<number>(data['Faixa Etária'] || {}).sort((a, b) => b.value - a.value)
+  const chartData = getObjToArr<number>(data['Escolaridade após 2005'] || {}).sort((a, b) => b.value - a.value)
 
   return (
     <div className="chart-wrapper">
@@ -32,4 +32,4 @@ const EmpregosFaixaEtaria = ({
   );
 };
 
-export default EmpregosFaixaEtaria;
+export default DiversidadeGrauInstrucao;
